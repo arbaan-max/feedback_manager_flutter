@@ -30,52 +30,54 @@ The app fetches the list of feedback using Dio's GET method and displays it.
 ## Post Method
 
 This method receives the feedback details and saves them as a new row in the Google Sheets document.
-function doPost(request) {
-var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID");
-var result = { "status": "SUCCESS" };
 
-try {
-var name = request.parameter.name;
-var email = request.parameter.email;
-var mobileNo = request.parameter.mobileNo;
-var feedback = request.parameter.feedback;
+    function doPost(request) {
+    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID");
+    var result = { "status": "SUCCESS" };
+
+    try {
+    var name = request.parameter.name;
+    var email = request.parameter.email;
+    var mobileNo = request.parameter.mobileNo;
+    var feedback = request.parameter.feedback;
 
     sheet.appendRow([name, email, mobileNo, feedback]);
 
-} catch (exc) {
-result = { "status": "FAILED", "message": exc };
-}
+    } catch (exc) {
+        result = { "status": "FAILED", "message": exc };
+    }
 
-return ContentService
-.createTextOutput(JSON.stringify(result))
-.setMimeType(ContentService.MimeType.JSON);
-}
+    return ContentService
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+    }
 
 ## Get Method
 
 This method retrieves all the feedback from the Google Sheets document and returns it as a JSON array.
-function doGet(request){
-var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID");
-var values = sheet.getActiveSheet().getDataRange().getValues();
-var data = [];
 
-for (var i = values.length - 1; i >= 0; i--) {
-var row = values[i];
-var feedback = {};
+    function doGet(request){
+    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID");
+    var values = sheet.getActiveSheet().getDataRange().getValues();
+    var data = [];
 
-    feedback['name'] = row[0];
-    feedback['email'] = row[1];
-    feedback['mobile_no'] = row[2];
-    feedback['feedback'] = row[3];
+    for (var i = values.length - 1; i >= 0; i--) {
+    var row = values[i];
+    var feedback = {};
+
+        feedback['name'] = row[0];
+        feedback['email'] = row[1];
+        feedback['mobile_no'] = row[2];
+        feedback['feedback'] = row[3];
 
     data.push(feedback);
 
-}
+    }
 
-return ContentService
-.createTextOutput(JSON.stringify(data))
-.setMimeType(ContentService.MimeType.JSON);
-}
+    return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+    }
 
 <!-- How to Use -->
 
