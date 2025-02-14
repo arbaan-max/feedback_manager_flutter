@@ -13,9 +13,16 @@ Dio Integration:
 Dio package is used for making HTTP requests in the Flutter app.
 This improves error handling and performance compared to the traditional http package.
 
+## Google App Script Web URL
+const String sheetWebUrl = "https://script.google.com/macros/s";
+![Image](https://github.com/user-attachments/assets/c22d2f33-a393-4909-a0b9-2ae2e0445f98)
+
 <!-- How It Works -->
 
 ## Google Apps Script (Backend)
+Go to AppScript From Google Sheets Excel:
+
+![Image](https://github.com/user-attachments/assets/56d6c768-3312-412f-a6f3-5011dab8a470)
 
 Google Sheets is used as the database to store feedback data.
 A Google Apps Script is deployed as a web app to handle POST and GET requests.
@@ -26,6 +33,8 @@ Data is sent to Google Sheets using Dio's POST method.
 The app fetches the list of feedback using Dio's GET method and displays it.
 
 <!-- Google Apps Script Code -->
+## Sheet ID
+![Image](https://github.com/user-attachments/assets/584dd453-d0a6-482e-8208-c522bd897990)
 
 ## Post Method
 
